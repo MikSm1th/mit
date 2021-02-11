@@ -4,4 +4,3 @@ git add .
 git commit -m "gitbsh commit"
 git push
 
-gitbsh > /dev/null
