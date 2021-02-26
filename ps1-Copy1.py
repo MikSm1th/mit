@@ -44,18 +44,22 @@ def calculate_pay_debt_in_a_year(balance):
     '''
     Calculates paying off debt in a year.
     '''
+    num_of_guesses = 0
     end_balance = balance
     payment = 10
     while end_balance > 0: 
         payment = payment + 10
+        num_of_guesses += 1
         pay_list = twelve_months_paid(balance, annual_interest, payment)
         payment, month, end_balance = pay_list[-1]
 
+    
     less_than_zero = [i for i in pay_list if i[2] < 0]
     paid_off = [[(i) for i, j, k in less_than_zero], 
                [ j for i, j, k in less_than_zero ],
                [ k for i, j, k in less_than_zero]]
     payment2, month2, balance2 = paid_off[0][0], min(paid_off[1]), max(paid_off[2])
+    print(f'\nNumber of guesses: {num_of_guesses}')
     return payment2, month2, balance2
 
     
@@ -64,7 +68,7 @@ if __name__ == "__main__":
 #     min_monthly_payment_for_a_year(balance, annual_interest, min_month_rate)
 #     print("\nProblem 1 - Output end.")
 
-    print('Problem 2 input')
+    print('Problem 2 input\n')
     balance =  float(input('Enter the outstanding balance on your credit card: '))
     annual_interest = float(input('Enter the annual credit card interest rate as a decimal: '))
     
